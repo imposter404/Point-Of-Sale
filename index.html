@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+<link rel="stylesheet" href="link/min1.css">
+<link rel="stylesheet" href="css.css">
+<script src="link/boot.js"></script>
+<script src="link/apex.js"></script>
+
+<body>
+
+<div class="offcanvas1 login middle " id="Login" style="z-index: 10;/*visibility:visible;*/">
+  <!-- <div class="flex" style="position: absolute;top: 10px;left: 10px;width:fit-content;gap: 10px;">
+    <div class="flex-div" style="background:url(pic/background/coffee.jpg) no-repeat center/150%;border-radius: 20px;height: 100px;aspect-ratio: 1/1;"></div>
+    <div class="flex-div" style="font-size: 50px;">MARKET</div>
+  </div> -->
+  <div class="div">
+    <div class="background"></div>
+    <div class="center">
+      <div class="login-pic" id="login-pic"></div>
+    </div>
+    <div class="center heading1">Wellcome</div>
+    <hr>
+    <div class="form-floating" style="margin-top:20px ;">
+      <input type="text" class="form-control input " style="height: 58px" id="login_User_id" onkeyup="Login_Pic()" placeholder="User" value="john">
+      <label>User ID</label>
+    </div>
+    <div class="form-floating" style="margin-top:20px ;">
+      <input type="text" class="form-control input"  style="height: 58px;" id="login_Password"  onkeyup="Login_Pic()" placeholder="Password" value="Pic1">
+      <label for="loginPassword">Password</label>
+    </div>
+    <hr>
+    <div class="middle">
+      <button class="btn btn-primary" style="width: 100%;height: 60px;border-radius: 50px;" onclick="Login()">LOG IN</button>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="offcanvas1-backdrop menu-backdrop" style="z-index: 2;" onclick="offcanvas1_Close('.menu','menu')">1</div>
+<div class="offcanvas1 menu"  id="Menu">
+  <div class="flex" style="padding: 10px;border-bottom: 1px solid rgb(100, 100, 100);">
+    <div class="heading1 flex-div" style="flex:80%;padding-left: 20px;">MENU</div>
+    <div class="flex-div middle" style="flex:20%;position: relative;" >  
+      <button class="btn-close btn-close-white" onclick="offcanvas1_Close('.menu','menu')"></button>
+    </div>  
+  </div>
+  <div class="flex" style="padding: 20px;background: linear-gradient(45deg, #6e4242, #111a2c);margin-top:15px;border-radius: 100vw;">
+    <div class="flex-div" style="flex: 50%;aspect-ratio: 1/1;">
+      <div style="height:100%; border-radius: 100%;background:url(pic/profile/pic1.jpg) no-repeat left/contain;" id="Login-Menu_pic"></div>
+    </div>
+    <div class="flex-div middle heading2" style="flex: 50%;">
+     <div class="center heading2" style="width: 100%;word-break:break-word;padding-inline:15px;" id="Login-Menu_Name"></div>
+    </div> 
+  </div>
+  <div class="middle">
+    <div style="width:80%"><hr></div>
+  </div>
+  <div class="menu-links" style="padding: 30px 0px;">
+    <div onclick="offcanvas1_Open('.about','top')"><i class="bi bi-info-circle" style="margin-right: 10px;"></i>ABOUT</div>
+    <div onclick="offcanvas1_Open('.inventory','top')"><i class="bi bi-box" style="margin-right: 10px;"></i>INVENTORY</div>
+    <div onclick="offcanvas1_Open('.overview','top')"><i class="bi bi-collection" style="margin-right: 10px;"></i>OVERVIEW</div>
+    <div><i class="bi bi-clipboard-data" style="margin-right: 10px;"></i>REPORTS</div>
+    <div><i class="bi bi-display" style="margin-right: 10px;"></i>CONNECT</div>
+  </div>
+  <div class="middle" style="padding: 20px;position: absolute;bottom: 0;width: 100%;border-top: 1px solid #646464;text-align: center;cursor:pointer;" onclick="Logout()">
+      LOG OUT
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="div-header" style="box-shadow: 0px 15px 20px -15px black;">
+  <div class="flex" style="height: 100%;"> 
+    <div class="flex-div middle">
+      <!-- <button class="btn btn-primary" onclick="offcanvas1_Open('.login','login')">TOP</button> -->
+    </div>
+    <div class="flex-div middle">Home</div>
+    <div class="flex-div" style="display: flex;justify-content: end;">
+      <button class="btn btn-primary"  onclick="offcanvas1_Open('.menu','menu')">menu</button>
+    </div>
+  </div>
+</div>
+
+<div class="div-company">
+<div class="flex" style="width: 100%;height: 100%;">
+  <div class="flex-div" style="height: 100%;aspect-ratio: 1/1;background: url(pic/background/coffee.jpg) no-repeat center/157%;border-radius: 50%;"></div>
+  <div class="flex-div heading1" style="flex: 50%;padding:0 50px;color: white;">Market Store</div>
+</div>
+</div>
+
+
+<div class="middle div-search" id="search" >
+    <div class="search-bar middle" style="box-shadow: 0px 15px 20px -15px black;border: 1px solid #810000;" >
+    <div class="flex middle" style="position: relative;width: 100%;height: 100%;">
+        <div class="autocomplete" style="width: 100%;">
+            <input class="input" placeholder="search product" id="Product_Search_Input" style="background-color: transparent;color: #fff; border: none;outline: none;width: 100%;" autocomplete="off" onkeyup="this.value=this.value.toUpperCase()">
+        </div>
+        <div class="middle" style="position: absolute;right: 0;width: 40px;background:var(--bs-red);color: white;border-radius: 50px;height: 40px;" onclick="Inventory_Search()"><i class="bi bi-search"></i></i></div>
+    </div>
+    </div>
+</div>
+
+<div class="div-cart" style="color: #ffffff;">
+    <div class="flex">
+        <div class="flex-div middle" style="flex-direction: column;overflow: hidden;">
+          <div style=" font-size: 30px;"><i class="bi bi-cart2" style="margin-right: 10px;"></i>Cart</div>
+          <div class="div cart table-responsive" >
+            <table class="table table-dark" style="overflow-x: scroll;" id="Cart">
+              <thead>
+                <tr>
+                  <td>Slno</td>
+                  <td>Product</td>
+                  <td>size</td>
+                  <td>Price</td>
+                  <td>Quantity</td>
+                  <td>Discount</td>
+                  <td>Gst</td>
+                  <td>Total</td>
+                  <td>delete</td>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="flex-div middle" style="flex-direction: column;">
+          <div style="font-size: 30px;"><i class="bi bi-box2" style="margin-right: 10px;"></i>Order</div>
+          <div class="div div-cart-Order ">
+            <div class="flex" style="height: 100%;background: #283542;border-radius: 20px;scale: 0.95;">
+              <div class="flex-div">Sub Total</div>
+              <div class="flex-div right" id="cart-order-Subtotal">0</div>
+              <div class="flex-div " style="flex: 50%;">Discount</div>
+              <div class="flex-div right" style="flex: 50%;" id="cart-order-Discount">0</div>
+              <div class="flex-div head">Gst</div>
+              <div class="flex-div right" id="cart-order-gst">0</div>
+              <div class=" flex" style="width: 100%; border:1px solid rgba(255, 255, 255, 0.5); border-radius: 20px;box-shadow: 0 -5px 20px -5px #000000d1;scale: 1.05;background-color: inherit;">
+                <div class="flex-div" style="font-size: 30px;">Total</div>
+                <div class="flex-div right heading1" id="cart-order-Total">0</div>
+              </div>
+              <!-- <div class="flex-div ">Total</div>
+              <div class="flex-div right">110</div> -->
+            </div>
+
+          </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="offcanvas1 inventory" id="Inventory"  >
+  <div class="flex" style="padding:20px 10px;border-bottom: 1px solid rgb(100, 100, 100);">
+    <div class="heading2 flex-div" style="flex:90%;"><i class="bi bi-box" style="margin-right: 20px;"></i>INVENTORY</div>
+    <div class="flex-div middle" style="flex:10%;position: relative;" >  
+      <button class="btn-close btn-close-white" onclick="offcanvas1_Close('.inventory','top')"></button>
+    </div>  
+  </div>
+  
+<div class="offcanvas1-body" >    
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            <i class="bi bi-box" style="margin-right: 10px;"></i>
+            INVENTORY TABLE
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+          <div class="accordion-body" style="width: 100%; overflow-y: auto;">
+            <div class="input-group" style="padding: 10px;">
+              <input id="Filter_Search" class="form-control" style="color: black;" onkeyup="filter_search(this.value,2)" >
+              <i class="bi bi-x-lg btn btn-outline-dark input-group-text" onclick='filter_search("",2)'></i><span  class="btn btn-outline-dark input-group-text" style="margin-left:1vw;" onclick="filter_search(0,4)">0</span>
+              <span class="btn btn-outline-dark input-group-text" style="margin-left:1vw;" onclick="filter_search(1,4)">1</span><span  class="btn btn-outline-dark input-group-text" style="margin-left:1vw;" onclick="filter_search(2,4)">2</span>
+              <div class="btn btn-outline-dark input-group-text" style="margin-left:2vw;" onclick="offcanvas1_Open('.add_inventory','add_inventory')">+</div>
+            </div>
+            <div class="table-responsive" style="width: 100%;">
+              <table class="table table-striped table-dark " id="Inventory_Table">
+                <thead>
+                  <tr>
+                    <td>Sl No</td>
+                    <td>Product Id </td>
+                    <td>Product </td>
+                    <td>Size </td>
+                    <td>Quantity</td>
+                    <td>Price </td>
+                    <td>Discount </td>
+                    <td>Gst </td>
+                    <td>Buy Price </td>
+                    <td>Barcode </td>
+                    <td>Edit </td>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="accordion-item ">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <i class="bi bi-grid" style="margin-right: 10px;"></i>
+            SELL RECORDS TABLE
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="table-responsive" style="width: 100%;">
+              <table class="table table-striped table-dark " id="Sell_Table">
+                <thead>
+                  <tr>
+                    <td>Sl No</td>
+                    <td>Bill Id </td>
+                    <td>DATE </td>
+                    <td>Name </td>
+                    <td>Mobile </td>
+                    <td>Shipping </td>
+                    <td>Shipping Address </td>
+                    <td>Payment </td>
+                    <td>Total</td>
+                    <td>Profit </td>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Total Item </td>
+                    <td>Discount </td>
+                    <td>Gst </td>
+                    <td>Profit_item </td>
+                    <td>Invoice </td>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <i class="bi bi-archive" style="margin-right: 10px;"></i>
+            UPDATE TABLE
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="table-responsive" style="width: 100%;">
+              <table class="table table-striped table-dark " id="Update_Table">
+                <thead>
+                  <tr>
+                    <td>Sl No</td>
+                    <td>Date</td>
+                    <td>Product ID</td>
+                    <td>Product</td>
+                    <td>Size</td>
+                    <td>New_Price</td>
+                    <td>New_Quantity</td>
+                    <td>New_Gst</td>
+                    <td>New_Buy Price</td>
+                    <td>Old_Price</td>
+                    <td>Old_Quantity</td>
+                    <td>Old_Gst</td>
+                    <td>Old_Buy Price</td>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="accordion-item ">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
+            <i class="bi bi-calendar-date" style="margin-right: 10px;"></i>
+            TODAY SELL TABLE
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <div class="table-responsive" style="width: 100%;">
+              <table class="table table-striped table-dark" id="Today_Table" >
+                <thead>
+                  <tr>
+                    <td>Sl No</td>
+                    <td>Bill Id </td>
+                    <td>Date </td>
+                    <td>Name </td>
+                    <td>Mobile </td>
+                    <td>Delivery </td>
+                    <td>Delivery Address </td>
+                    <td>Total </td>
+                    <td>Payment </td>
+                    <td>Profit </td>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+            <div style="height: 365px;display:none;" id="Today_Table_No_product">
+              <div style="background: url(pic/Nothing.png) no-repeat center/contain;height: 80%;"></div>
+              <div class="heading1 center" style="transform: translateY(-46px);">No Product Sold Today </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+<!-- //delete -->
+<div class="offcanvas1-backdrop add_inventory-backdrop"  style="z-index: 2;" onclick="offcanvas1_Close('.add_inventory','add_inventory')" >1</div>
+
+<div class="offcanvas1 add_inventory" id="Add_inventory" style="z-index: 2;height: max-content;top: auto;" >
+  <div class="flex" style="padding: 20px;border-bottom: 1px solid rgb(100, 100, 100);">
+    <div class="heading2 flex-div" style="flex:90%;"><i class="bi bi-plus-square" style="margin-right: 20px;"></i>Add Inventory</div>
+    <div class="flex-div middle" style="flex:10%;position: relative;" >  
+      <button class="btn-close btn-close-white" onclick="offcanvas1_Close('.add_inventory','add_inventory')"></button>
+    </div>  
+  </div>
+  <div class="offcanvas1-body middle" style="flex-direction: column;">
+    <div  style="padding: 20px 0px;">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control input" style="height: 58px;" id="Add_Product_Name" placeholder="Product Name">
+        <label for="Add_Product_Name">Product Name</label>
+      </div>
+      <div class="flex">
+        <div class="flex-div" style="flex: 50%;padding: 0 30px;">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control input" style="height: 58px;" id="Add_Size" placeholder="Size">
+            <label for="Add_Size">Size</label>
+          </div>
+        </div>
+        <div class="flex-div" style="flex: 50%;padding: 0 30px">
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control input" style="height: 58px;" id="Add_Quantity" placeholder="Quantity">
+            <label for="Add_Quantity">Quantity</label>
+          </div>
+        </div>
+      </div>
+      <div class="flex">
+        <div class="flex-div" style="flex: 50%;padding: 0 30px">
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control input" style="height: 58px;" id="Add_Price" placeholder="Price">
+            <label for="Add_Price">Price</label>
+          </div>
+        </div>
+        <div class="flex-div" style="flex: 50%;padding: 0 30px">
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control input" style="height: 58px;" id="Add_Buy_Price" placeholder="Buy Price">
+            <label for="Add_Buy_Price">Buy Price</label>
+          </div>
+        </div>
+      </div>
+      <div class="flex">
+        <div class="flex-div" style="flex: 50%;padding: 0 30px">
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control input" style="height: 58px;" id="Add_Discount" placeholder="Discount">
+            <label for="Add_Discount">Discount</label>
+          </div>
+        </div>
+        <div class="flex-div" style="flex: 50%;padding: 0 30px">
+          <div class="form-floating mb-3">
+            <input type="number" class="form-control input" style="height: 58px;" id="Add_GST" placeholder="GST">
+            <label for="Add_GST">GST</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="middle" style="width: 100%; flex-direction: column;">
+      <hr style="width: 100%;">
+      <button class="btn btn-danger" style="width: 80%;margin: 20px 0;max-width: 1000px;" onclick="offcanvas1_Open('.add_inventory-confirm','add_inventory-confirm')">SAVE</button>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="offcanvas1-backdrop add_inventory-confirm-backdrop" style="z-index: 4;" onclick="offcanvas1_Close('.add_inventory-confirm','add_inventory-confirm')">1</div>
+
+<div class="offcanvas1 add_inventory-confirm" id="Add_inventory-confirm"  style="z-index: 4;height: fit-content;top: auto;" >
+  <div class="flex" style="padding: 20px;border-bottom: 1px solid rgb(100, 100, 100);">
+    <div class="heading2 flex-div" style="flex:90%;">Confirm</div>
+    <div class="flex-div middle" style="flex:10%;position: relative;" >  
+      <button class="btn-close btn-close-white" onclick="offcanvas1_Close('.add_inventory-confirm','add_inventory-confirm')"></button>
+    </div>  
+  </div>
+  <div class="offcanvas1-body"> 
+    <div class="middle heading1" style="height: 100px;">Add product</div>
+      <div class="" style="height: fit-content;width: 100%;">
+        <div class="middle flex" style="padding: 10px 0px;">
+          <div class="flex-div middle" style="height: 58px;width: 100px;border-radius:20px;margin:0px 10px;background: var(--bs-purple);font-size: 24px;"><i class="bi bi-at"></i></div>
+          <div class="flex-div form-floating">
+            <input class="input form-control" type="text" placeholder="User ID" style="border-color: #1b9bee;">
+          </div>
+        </div>
+        <div class="middle flex"  style="padding: 10px 0px;">
+          <div class="flex-div middle" style="height: 58px;width: 100px;border-radius:20px;margin:0px 10px;background: var(--bs-purple);font-size: 24px;"><i class="bi bi-lock"></i></div>
+          <div class="flex-div form-floating">
+            <input class="input form-control" type="text" placeholder="Password" id="Add_Product_Confirm" style="border-color: #1b9bee;" >
+          </div>
+        </div>
+        <div class="middle" style="flex-direction: column;">
+          <hr style="width: 100%;">
+          <button class="btn btn-danger" style="width: 80%;margin: 20px 0px;" onclick="Inventory_Add_Confirm()"> Confirm</button>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="offcanvas1-backdrop edit_inventory-backdrop"  style="z-index: 2;" onclick="offcanvas1_Close('.edit_inventory','left')" >1</div>
+
+<div class="offcanvas1 edit_inventory " id="Edit_inventory" style="z-index: 2;" >
+  <div class="flex" style="padding: 20px;border-bottom: 1px solid rgb(100, 100, 100);">
+    <div class="heading2 flex-div" style="flex:90%;"><i class="bi bi-pencil-square" style="margin-right: 20px;"></i>EDIT INVENTORY</div>
+    <div class="flex-div middle" style="flex:10%;position: relative;" >  
+      <button class="btn-close btn-close-white" onclick="offcanvas1_Close('.edit_inventory','left')"></button>
+    </div>  
+  </div>
+  <div class="offcanvas1-body">
+    <div class="heading2" style="margin-top: 16px;">#<span id="edit_inventory_Product_id">10</span></div>
+    <div class="heading2" style="padding: 0px 0px 25px 0px;" id="edit_inventory_product">ABDOMINAL BELT UNI DRYTEX PROVA</div>
+
+  <div id="edit_inventory_Size_div" style="padding: 0 5px;">
+    <div style="height: fit-content; border-radius: 15px;border:5px solid white;background: linear-gradient(to left, #006663, #111111);padding: 5px;margin-bottom: 50px;">
+      <div style="padding: 5px 20px; font-size: 20px;margin:5px 0px 0px 10px;background-color:var(--bs-red);width: fit-content;border-radius: 50px;" id="edit_inventory_size">M</div>
+      <div style="background:linear-gradient(to right, #006663, #111111);padding: 5px; border-radius: 15px;margin: 10px;">
+        <div class="middle">Quantity</div><hr>
+        <div class="flex">
+          <div class="flex-div"><input class="input" type="number" placeholder="New Quantity" id="edit_inventory_Quantity" style="background: #212529;" ></div>
+          <div class="flex-div middle" id="edit_inventory_Quantity_cal">15</div> 
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(to right, #006663, #111111);padding: 5px; border-radius: 15px;margin: 10px;">
+        <div class="middle">PRICE</div><hr>
+        <div class="flex">
+          <div class="flex-div"><input class="input" type="number" placeholder="New price" id="edit_inventory_Price" style="background: #212529;"></div>
+          <div class="flex-div middle" id="edit_inventory_Price_cal">15</div> 
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(to right, #006663, #111111);padding: 5px; border-radius: 15px;margin: 10px;">
+        <div class="middle"> BUY PRICE</div><hr>
+        <div class="flex">
+          <div class="flex-div"><input class="input" type="number" placeholder="New Price" id="edit_inventory_Buy_price" style="background: #212529;"></div>
+          <div class="flex-div middle" id="edit_inventory_Buy_price_cal">15</div> 
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(to right, #006663, #111111);padding: 5px; border-radius: 15px;margin: 10px;">
+        <div class="middle">GST </div><hr>
+        <div class="flex">
+          <div class="flex-div"><input class="input" type="number" placeholder="New GST" id="edit_inventory_Gst" style="background: #212529;"></div>
+          <div class="flex-div middle" id="edit_inventory_Gst_cal">15</div> 
+        </div>
+      </div>
+    </div>
+  </div>
+    <!-- to create margin-bottom  -->
+    <div style="height: 50px;"></div>
+  </div>
+  <div class="offcanvas1-footer">
+      <div style="margin: 20px 25px;"><div class="middle btn btn-danger" onclick="offcanvas1_Open('.edit_inventory-confirm','bottom')">SAVE</div></div>
+  </div>
+</div>
+
+
+
+
+<div class="offcanvas1-backdrop edit_inventory-confirm-backdrop" style="z-index: 4;" onclick="offcanvas1_Close('.edit_inventory-confirm','bottom')">1</div>
+
+<div class="offcanvas1 edit_inventory-confirm " id="Edit_inventory-confirm"  style="z-index: 4;" >
+  <div class="flex" style="padding: 20px;border-bottom: 1px solid rgb(100, 100, 100);">
+    <div class="heading2 flex-div" style="flex:90%;">Confirm</div>
+    <div class="flex-div middle" style="flex:10%;position: relative;" >  
+      <button class="btn-close btn-close-white" onclick="offcanvas1_Close('.edit_inventory-confirm','bottom')"></button>
+    </div>  
+  </div>
+  <div class="offcanvas1-body"> 
+    <div class="middle heading1" style="height: 100px;">Verify Update</div>
+      <div class="" style="height: fit-content;width: 100%;">
+        <div class="middle flex" style="padding: 10px 0px;">
+          <div class="flex-div middle" style="height: 58px;width: 100px;border-radius:50px;margin:0px 10px;background:var(--bs-purple);font-size: 24px;"><i class="bi bi-at"></i></div>
+          <div class="flex-div form-floating">
+            <input class="input form-control" type="text" placeholder="user_id" style="border-color: #1b9bee;" id="edit_inventory-confirm-User_id">
+            <label>User ID</label>
+          </div>
+        </div>
+        <div class="middle flex"  style="padding: 10px 0px;">
+          <div class="flex-div middle" style="height: 58px;width: 100px;border-radius:50px;margin:0px 10px;background:var(--bs-purple);font-size: 24px;"><i class="bi bi-lock"></i></div>
+          <div class="flex-div form-floating">
+            <input class="input form-control" type="text" placeholder="Password" id="Inventory_Edit_Confirm" style="border-color: #1b9bee;" >
+            <label>Password</label>
+          </div>
+        </div>
+        <div class="middle" style="flex-direction: column;">
+          <hr style="width: 100%;">
+          <button class="btn btn-danger" style="width: 80%;margin: 20px 0px;height: 50px;" onclick="Inventory_Edit_Confirm()"> Confirm</button>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- auto complete search -->
+  <!-- <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+  <label class="btn btn-outline-success" for="success-outlined">Checked success radio</label>
+  
+  <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+  <label class="btn btn-outline-danger" for="danger-outlined">Danger radio</label> -->
+
+
+
+
+
+
+<div class="offcanvas1-backdrop inventory-search-backdrop" style="z-index: 2;" onclick="offcanvas1_Close('.inventory-search','inventory-search')" >1</div>
+
+<div class="offcanvas1 inventory-search id="Autocomplete-search"  style="z-index: 2;" >
+  <div class="flex" style="padding: 20px;border-bottom: 1px solid rgb(100, 100, 100);">
+    <div class="heading2 flex-div" style="flex:90%;">Product Search</div>
+    <div class="flex-div middle" style="flex:10%;position: relative;" >  
+      <button class="btn-close btn-close-white" onclick="offcanvas1_Close('.inventory-search','inventory-search')"></button>
+    </div>  
+  </div>
+  <div class="offcanvas1-body" style="overflow: auto;">
+    <div id="inventory-search-Product_id">#101</div>
+    <div class="heading2" id="inventory-search-Product">product</div>
+    <div class="center flex size" id="inventory-search-Size" style="gap:20px">
+      <div class="flex-div" >
+        <div>
+          <input type="radio" class="btn-check" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+          <label class="btn btn-outline-light" for="success-outlined">S</label>
+        </div>
+      </div>
+      <div class="flex-div">
+        <input type="radio" class="btn-check" name="options-outlined" id="danger-outlined" autocomplete="off">
+        <label class="btn btn-outline-light" for="danger-outlined">M</label>
+      </div>
+      <div class="flex-div">
+        <input type="radio" class="btn-check" name="options-outlined" id="size3" autocomplete="off" value="L">
+        <label class="btn btn-outline-light" for="size3">L</label>
+      </div>
+    </div>
+
+    <div class="size-calculation">
+      <div class="flex">
+        <div class="flex-div heading2">price</div>
+        <div class="flex-div heading2 middle">Rs<span id="inventory-search-Price">100</span></div>
+      </div>
+      <div class="flex">
+        <div class="flex-div">
+          <span class=" heading2">Quantity</span>
+          <br>
+          <span class="heading5">Inv Quantity</span>
+            <span style="margin-left: 10px;">x
+            <span id="inventory-search-Quantity_inv">5</span>
+          </span>
+        </div>
+        <div class="flex-div">
+          <input class="input" type="number" placeholder="Quantity" id="inventory-search-Quantity" value="1" oninput="Inventory_Search_Size_Input()">
+        </div>
+      </div>
+      <div class="flex">
+        <div class="flex-div">
+          <span class="heading2">Discount</span>
+          <br>
+          <span class="heading5">Inv Discount</span>
+          <span style="margin-left: 10px;" id="inventory-search-Discount_inv">20</span>%
+        </div>
+        <div class="flex-div">
+          <input class="input" type="number" placeholder="Discount"  id="inventory-search-Discount" oninput="Inventory_Search_Size_Input()">
+          <span style="margin: 10px;">=</span><span style="margin: 30px;"  id="inventory-search-Discount_cal">500</span>
+        </div>
+      </div>
+      <div class="flex">
+        <div class="flex-div heading2">
+          <span class=" heading2">GST</span>
+          <br>
+          <span class="heading5">Product GST</span>
+          <span id="inventory-search-Gst_inv" >5</span>%
+        </div>
+        <div class="flex-div">
+          <select class="btn btn-outline-light" style="width:50%" id="inventory-search-Gst" oninput="Inventory_Search_Size_Input()">
+            <option value="0" selected>0%</option>
+            <option value="5">5%</option>
+            <option value="12">12%</option>
+            <option value="18">18%</option>
+          </select>
+          <span style="margin: 10px;">=</span><span style="margin: 30px;" id="inventory-search-Gst_cal">500</span>
+        </div>
+      </div>
+      <div class="flex" style="background-color: #19222a;border-radius: 20px;padding: 10px;">
+        <div class="flex-div heading1">total</div>
+        <div class="flex-div heading1" style="display: flex;justify-content: end;">Rs 
+          <span id="inventory-search-Total">5000</span></div>
+      </div>
+    </div>
+    <hr>
+    <div style="width:100%;margin: 20px 0px;">
+      <button class="btn btn-primary" style="width:100%" onclick="Add_to_Cart()">Add To Cart</button>
+    </div>
+  </div>
+</div>
+<div></div>
+
+
+
+
+
+
+<div class="offcanvas1-backdrop sell-order-details-backdrop"  style="z-index: 2;" onclick="offcanvas1_Close('.sell-order-details','sell-order-details')" >1</div>
+
+<div class="offcanvas1 sell-order-details" id="Autocomplete-search" style="height: fit-content;top: auto;z-index: 2;">
+  <div class="flex" style="padding: 20px;border-bottom: 1px solid rgb(100, 100, 100);">
+    <div class="heading2 flex-div" style="flex:90%;">Sell Orders</div>
+    <div class="flex-div middle" style="flex:10%;position: relative;" >  
+      <button class="btn-close btn-close-white" onclick="offcanvas1_Close('.sell-order-details','sell-order-details')"></button>
+    </div>  
+  </div>
+  <div class="offcanvas1-body" style="overflow: auto;">
+    <div class="flex">
+      <div class="flex-div">
+        <div class="heading6">Bill ID</div>
+        <div id="sell-order-Bill_id">5000</div>
+      </div>
+      <div class="flex-div">
+        <div class="heading6">Date</div>
+        <div  id="sell-order-Date">10/jan/2023</div>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="flex-div">
+        <div class="heading6">Name</div>
+        <div  id="sell-order-Name">ABCD</div>
+      </div>
+      <div class="flex-div">
+        <div class="heading6">Phone</div>
+        <div  id="sell-order-Phone">+91 123456789</div>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="flex-div">
+        <div class="heading6">Payment</div>
+        <div  id="sell-order-Payment">UPI</div>
+      </div>
+      <div class="flex-div">
+        <div class="heading6">Shipping</div>
+        <div  id="sell-order-Shipping">Delivery</div>
+      </div>
+    </div>
+    <div class="flex-div" style="flex: auto;">
+      <div class="heading6">Shipping Address</div>
+      <div  id="sell-order-Shipping_address">SHIP</div>
+    </div>
+    <div class="flex">
+      <div class="flex-div">
+        <div class="heading6">Total</div>
+        <div  id="sell-order-Total">1000</div>
+      </div>
+      <div class="flex-div">
+        <div class="heading6">Profit</div>
+        <div  id="sell-order-Profit">1000</div>
+      </div>
+    </div>
+    <hr>
+    <div id="sell-order-Sell_Deatils">
+      <div class="div" >
+        <div>
+          <div class="heading6">Product ID</div>
+          <div id="sell-order-Product_id">#100</div>
+        </div>
+        <!-- <div id="sell-order-Product">Product</div> -->
+<!-- //start here -->
+
+        <div class="flex">
+          <div class="flex-div">
+            <div class="heading6">Product</div>
+            <div id="sell-order-Product">products2134</div>
+          </div>
+          <div class="flex-div">
+            <div class="heading6 right">Size</div>
+            <div id="sell-order-Size" class="right">M</div>
+          </div>
+        </div>
+
+        <div class="flex">
+          <div class="flex-div">
+            <div class="heading6 ">Price</div>
+            <div id="sell-order-Price">1000</div>
+          </div>
+          <div class="flex-div">
+            <div class="flex-div">
+              <div class="heading6 right">Quantity</div>
+              <div id="sell-order-Quantity" class="right">1000</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="flex-div">
+            <div class="flex-div">
+          <div class="heading6">Discount</div>
+          <div id="sell-order-Discount">1000</div>
+        </div>
+          </div>
+          <div class="flex-div">
+            <div class="flex-div">
+          <div class="heading6 right">GST</div>
+          <div id="sell-order-GST" class="right">1000</div>
+        </div>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="flex-div">
+            <div class="flex-div">
+          <div class="heading6">Total Item</div>
+          <div id="sell-order-Total_items">1000</div>
+        </div>
+          </div>
+          <div class="flex-div">
+            <div class="flex-div">
+          <div class="heading6 right">Profit Item</div>
+          <div id="sell-order-Profit_item" class="right">1000</div>
+        </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="middle" style="padding: 30px;">
+  <button class="button-sell" style="width: 80vw;height: 50px;" onclick="offcanvas1_Open('.sell','sell')"><i class="bi bi-truck" style="margin-right: 10px;"></i>SELL</button>
+</div>
+<div class="offcanvas1-backdrop sell-backdrop" onclick="offcanvas1_Close('.sell','sell')" >1</div>
+
+<div class="offcanvas1 sell" id="Sell" style="height: fit-content;top: auto;">
+  <div class="flex" style="padding: 20px;border-bottom: 1px solid rgb(100, 100, 100);">
+    <div class="heading2 flex-div" style="flex:90%;">Sell</div>
+    <div class="flex-div middle" style="flex:10%;position: relative;" >  
+      <button class="btn-close btn-close-white" onclick="offcanvas1_Close('.sell','sell')"></button>
+    </div>  
+  </div>
+  <div class="offcanvas1-body middle" style="flex-direction: column;">
+    <div style="width: 100%;max-width: 900px;padding: 20px 0 0 0;">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control input" id="Name" placeholder="Name">
+        <label for="Name">Name</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="number" class="form-control input" id="Phone" placeholder="Phone">
+        <label for="Phone">Phone</label>
+      </div>
+      <div class="middle" style="margin:0px 0px 24px 0px;">
+          <input  type="checkbox" class="checkbox" id="checkbox" style="height:20px;width: 43px;" onclick="Sell_Checkbox()">
+          <span>don't add my name </span>
+      </div>
+        <hr>
+      <div class="flex mb-3" style="margin:24px 0px 0px 0px">
+        <div class="flex-div middle" style="flex:50%;">
+          <input type="radio" class="btn-check" name="payment_mode" id="Payment_mode_Cash" autocomplete="off"  checked>
+          <label class="btn btn-outline-light" for="Payment_mode_Cash" style="width:105px;">CASH</label>
+        </div>
+        <div class="flex-div middle" style="flex:50%;">
+          <input type="radio" class="btn-check" name="payment_mode" id="Payment_mode_UPI" autocomplete="off" >
+          <label class="btn btn-outline-light" for="Payment_mode_UPI" style="width:105px;">UPI</label>
+        </div>
+      </div>
+      <div class="flex mb-3">
+        <div class="flex-div middle" style="flex:50%;">
+          <input type="radio" class="btn-check" name="shipping_mode" id="Shipping_mode_Store" autocomplete="off" checked onclick="document.getElementById('Div-Shipping_Address').style.display='none'">
+          <label class="btn btn-outline-light" for="Shipping_mode_Store" style="width:105px;">STORE</label>
+        </div>
+        <div class="flex-div middle" style="flex:50%;">
+          <input type="radio" class="btn-check" name="shipping_mode" id="Shipping_mode_Delivery" autocomplete="off" onclick="document.getElementById('Div-Shipping_Address').style.display=''">
+          <label class="btn btn-outline-light" for="Shipping_mode_Delivery" style="width:105px;">DELIVERY</label>
+        </div>
+      </div>
+      <div class="form-floating mb-3" id="Div-Shipping_Address" style="display: none;">
+        <input type="text" class="form-control input" id="Shipping_Address" placeholder="Shipping Address">
+        <label for="Shipping Address">Shipping Address</label>
+      </div>
+    </div>
+    <div class="middle" style="flex-direction: column;width: 100%;">
+      <hr style="width: 100%;">
+      <button class="btn btn-danger" style="width: 50%;margin: 20px;" onclick="Sell_Next()">NEXT ></button>
+    </div>
+  </div>
+</div>
+
+
+<div class="offcanvas1-backdrop sell-confirm-backdrop" style="z-index: 4;"></div>
+
+<div class="offcanvas1 sell-confirm" id="Sell-confirm"  style="z-index: 4;" >
+  <div class="flex" style="padding: 20px;border-bottom: 1px solid rgb(100, 100, 100);">
+    <div class="heading2 flex-div" style="flex:90%;">Sell Confirm</div>
+    <div class="flex-div middle" style="flex:10%;position: relative;" >  
+      <button class="btn-close btn-close-white" id="sell-confirm-close" onclick="offcanvas1_Close('.sell-confirm','sell-confirm')"></button>
+    </div>  
+  </div>
+  <div class="offcanvas1-body"> 
+    <div style="display: block;" id="Sell-confirm-Verify">
+      <div class="middle heading1" style="height: 100px;">Verify Password</div>
+      <div class="" style="height: fit-content;width: 100%;">
+        <div class="middle flex" style="padding: 10px 0px;">
+          <div class="flex-div middle" style="height: 50px;width: 50px;border: 1px solid #1b9bee; border-radius:20px;margin:0px 10px ;">@</div>
+          <div class="flex-div">
+            <input class="input" type="text" value="apratim dey" style="border-color: #1b9bee;" disabled>
+          </div>
+        </div>
+        <div class="middle flex"  style="padding: 10px 0px;">
+          <div class="flex-div middle" style="height: 50px;width: 50px;border: 1px solid #1b9bee; border-radius:20px;margin:0px 10px ;">LOCK</div>
+          <div class="flex-div">
+            <input class="input" type="text" placeholder="Enter Password" id="Sell-confirm-Password" style="border-color: #1b9bee;" >
+          </div>
+        </div>
+        <div class="middle">
+          <button class="btn btn-primary " style="width: 80%;margin: 20px 0px;" onclick="Confirm()"> Confirm</button>
+        </div>
+      </div>
+    </div>
+    <div class="middle" id="Sell-confirm-Loading" style="display: none;height: 100%;">
+      <div class="middle" style="height: 80%;">
+        <!-- <video id="Loading" width="200px" height="200px" style=" border-radius: 50%;" muted autoplay>
+          <source src="link/loading.mp4" type="video/mp4">
+        </video> -->
+      </div>
+    </div>
+    <div class="middle" id="Sell-confirm-Sold" style="height: 100%;display: none;">
+      <div style="width: 100%;">  
+        <div class="heading2 middle" style="margin: 5px 0px;">SOLD v/</div>
+        <div class="heading1 middle" style="margin: 15px 0px;">SOLD</div>
+        <div class="heading2 middle" style="margin: 5px 0px;"><i class="bi bi-print"></i>print</div>
+        <div class="heading1 middle" style="margin: 50px 0px;">
+          <button class="btn btn-outline-light" style="width:80%;" onclick="location.reload()">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <button class="btn btn-primary" onclick="Sell_Order(1)">Sell order</button> -->
+
+
+<!-- OVERVIEW -->
+<!-- <div class="offcanvas1-backdrop sell-confirm-backdrop" style="z-index: 4;"></div> -->
+
+<div class="offcanvas1 overview " id="Overview"  style="z-index: 4;" >
+  <div class="flex" style="padding: 20px 10px;border-bottom: 1px solid rgb(100, 100, 100);background-color: var(--blue);">
+    <div class="heading2 flex-div" style="flex:90%;padding-left: 20px;"><i class="bi bi-collection" style="margin-right: 20px;"></i>OVERVIEW</div>
+    <div class="flex-div middle" style="flex:10%;position: relative;" >  
+      <button class="btn-close btn-close-white" id="sell-confirm-close" onclick="offcanvas1_Close('.overview','top')"></button>
+    </div>  
+  </div>
+  <div class="offcanvas1-body">
+    <div class="flex">
+      <div class="flex-div div">
+        <div class="div">
+          <div style="margin-bottom:10px;"><i class="bi bi-calendar-event" style="margin-right:10px ;"></i>TODAY</div>
+          <div class="flex">
+            <div class="flex-div" style="flex:50%;display:flex;align-items: center;">Sells</div>
+            <div class="flex-div" style="flex:50%;text-align:right;" id="Overview_today_Sells_per">10%</div>
+          </div>
+          <div style="margin-bottom:10px;text-align:right;font-size: 30px;" id="Overview_today_Sells">1000</div>
+          <div class="flex" style="background-color: rgba(143, 143, 143, 0.425);border-radius: 20px;padding: 5px 10px;">
+            <div class="flex-div" style="flex:auto;display:flex;align-items: center;" id="Overview_today_Profit_per">5%</div>
+            <div class="flex-div" style="flex:auto;text-align: right;" id="Overview_today_Profit">10000</div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-div div">
+        <div class="div">
+          <div style="margin-bottom:10px;"><i class="bi bi-calendar-range" style="margin-right:10px ;"></i>WEEK</div>
+          <div class="flex">
+            <div class="flex-div" style="flex:50%;display:flex;align-items: center;">Sells</div>
+            <div class="flex-div" style="flex:50%;text-align:right;" id="Overview_week_Sells_per">10%</div>
+          </div>
+          <div style="margin-bottom:10px;text-align:right;font-size: 30px;" id="Overview_week_Sells">1000</div>
+          <div class="flex" style="background-color: rgba(143, 143, 143, 0.425);border-radius: 20px;padding: 5px 10px;">
+            <div class="flex-div" style="flex:auto;display:flex;align-items: center;" id="Overview_week_Profit_per">5%</div>
+            <div class="flex-div" style="flex:auto;text-align: right;" id="Overview_week_Profit">10000</div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-div div">
+        <div class="div">
+          <div style="margin-bottom:10px;"><i class="bi bi-calendar3" style="margin-right:10px ;"></i>MONTH</div>
+          <div class="flex">
+            <div class="flex-div" style="flex:50%;display:flex;align-items: center;">Sells</div>
+            <div class="flex-div" style="flex:50%;text-align:right;" id="Overview_month_Sells_per">10%</div>
+          </div>
+          <div style="margin-bottom:10px;text-align:right;font-size: 30px;" id="Overview_month_Sells">1000</div>
+          <div class="flex" style="background-color: rgba(143, 143, 143, 0.425);border-radius: 20px;padding: 5px 10px;">
+            <div class="flex-div" style="flex:auto;display:flex;align-items: center;" id="Overview_month_Profit_per">5%</div>
+            <div class="flex-div" style="flex:auto;text-align: right;" id="Overview_month_Profit">10000</div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-div div">
+        <div class="div middle">
+          <div style="font-size: 30px;" id="Overview-Detail-Week">MONDAY</div>
+        </div>
+      </div>
+    </div>
+    <div class="flex" style="margin-top: 50px;">
+      <div class="flex-div chart">
+        <div class="div">
+          <div class="btn-group btn-group-sm" role="group" style="align-items: center;">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked onclick="Chart_Line('WEEK')">
+            <label class=" btn btn-outline-light" for="btnradio1">Week</label>
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" onclick="Chart_Line('MONTH')">
+            <label class=" btn btn-outline-light" for="btnradio2">Month</label>             
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" onclick="Chart_Line('YEAR')">
+            <label class=" btn btn-outline-light" for="btnradio3">Year</label>
+          </div>
+          <div id="Chart1" style="margin-top: 50px;"></div>
+        </div>
+      </div>
+      <div class="flex-div chart">
+        <div class="div">
+        
+          <div id="Chart2"></div>
+        </div>
+      </div>
+      <div class="flex-div chart" style="flex: 100%;">
+        <div class="div">
+          <div id="Chart3"></div>
+        </div>
+      </div>
+      <div class="flex-div chart" style="flex: 100%;overflow: hidden; ">
+        <div class="div div-confidence"  style="overflow: scroll;">
+          <div id="Confidence_itemset3"></div>
+          <hr>
+          <div id="Confidence_itemset2"></div>
+
+          <!-- <div class="flex" style="flex-wrap: nowrap;width: max-content;min-width:100%;">
+            <div class="flex-div middle"><div class="middle item">Hand belt</div></div>
+            <div class="flex-div middle"><div class="middle circle">+</div></div>
+            <div class="flex-div middle"><div class="middle item">Leg belt</div></div>
+            <div class="flex-div middle"><div class="middle circle">=></div></div>
+            <div class="flex-div middle"><div class="middle item">Back belt</div></div>
+            <div class="flex-div middle"><div class="middle circle">=</div></div>
+            <div class="flex-div middle"><div class="middle item conn">50%</div></div>
+          </div> -->
+        </div>
+      </div>
+      <div class="flex-div chart" style="flex: 100%;overflow: hidden;">
+        <div class="div overflow" style="overflow: auto;">
+          <div class="center heading2">Top Sold Products</div>
+            <div class="Top_Sold_Products_value" id="Top_Sold_Products_value" style="overflow: scroll;">
+              <div class="flex" style="flex-wrap: nowrap;width: max-content;min-width:100%;">
+                <div class="flex-div middle"><div class="product"></div></div>
+                <div class="flex-div middle"><div class="quantity">Quantity</div></div>
+                <div class="flex-div middle"><div class="frequency">Frequency</div></div>
+              </div>
+              <!-- <div style="width: 80%; padding: 0 5vw;"><hr></div>
+              <div class="flex" style="flex-wrap: nowrap;width: max-content;min-width:100%;">     
+                <div class="flex-div middle"><div class="product">CERVICAL COLLAR HARD ADJUSTABLE XL TYNOR</div></div>
+                <div class="flex-div middle"><div class="middle quantity">50</div></div>
+                <div class="flex-div middle"><div class="middle frequency">2</div></div>
+              </div> -->
+            </div>
+        </div>
+      </div>
+      <div class="flex-div chart" style="flex: 100%;">
+        <div class="div" style="overflow: auto;">
+          <div id="Chart4"></div>
+          <div id="Cluster_details" style="background-color:#0094cd91;color: white;border-radius: inherit;padding: 20px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ABOUT -->
+<!-- <button class="btn btn-primary " id="sell-confirm-close" onclick="offcanvas1_Open('.about','top')">About</button> -->
+
+<div class="offcanvas1 about " id="About" style="overflow: hidden;">
+  <div class="flex" style="padding: 20px;border-bottom: 1px solid rgb(100, 100, 100);background-color: #10263c80;box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);">
+    <div class="heading2 flex-div" style="flex:90%;">About</div>
+    <div class="flex-div middle" style="flex:10%;position: relative;" >  
+      <button class="btn-close btn-close-white" id="sell-confirm-close" onclick="offcanvas1_Close('.about','top')"></button>
+    </div>  
+  </div>
+  <div class="offcanvas1-body">
+    <div class="middle" style="height:100%;">
+      <div class="about-me" style="position: relative;">
+        <div class="background"></div>
+        <div class="center">
+          <div class="about-me_pic" style="height: 150px;aspect-ratio: 1/1;border-radius: 100%;z-index: 2;background: url(pic/profile/pic1.jpg) center/contain;"></div>
+        </div>
+        <div class="about-me_div" >
+          <div class="center about-me_name" style="font-size:30px;margin-top: 32px;">Imposter404</div>
+          <div class="about-me_role flex" style="margin-top: 20px;gap: 20px;">
+            <div class="flex-div btn btn-primary">Frontend</div>
+            <div class="flex-div btn btn-warning">Backend</div>
+            <div class="flex-div btn btn-success">Database</div>
+          </div>
+          <hr>
+          <div class="about-me_programs flex" style="margin-top: 20px;gap: 10px;"> 
+            <div class="flex-div">HTML</div>
+            <div class="flex-div">CSS</div>
+            <div class="flex-div">JavaScript</div>
+            <div class="flex-div">PHP</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- erroe page -->
+<div class="offcanvas1 error middle" id="Error" style="overflow: hidden;z-index: 100;background: #000c1b;">
+    <div style="height: 50vh;width:50vh;background: url(pic/background/404_space.gif) no-repeat center/cover;border-radius: 50%;">
+    <div class="heading1" style="text-align: center;transform: translateY(70px);letter-spacing:16px;">ERROR</div>
+    </div>
+</div>
+
+<script src="js.js"></script>
+
+</body>
+</html>
